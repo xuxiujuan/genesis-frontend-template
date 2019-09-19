@@ -1,0 +1,17 @@
+// NProgress样式重置
+#nprogress {
+  .bar {
+    background: #8B9BE1 !important; //自定义颜色
+  }
+  .peg {
+    box-shadow: 0 0 10px #8B9BE1, 0 0 5px #8B9BE1;
+  }
+  .spinner {
+    right: 10px;
+    top: 20px;
+    .spinner-icon {
+      border-top-color: #8B9BE1;
+      border-left-color: #8B9BE1;
+    }
+  }
+}
