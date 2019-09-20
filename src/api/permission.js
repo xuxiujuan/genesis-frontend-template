@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function getMenus() {
   return request({
-    url: 'api/admin/menu/authorized',
+    url: 'api/authorized_menu',
     method: 'get'
   })
 }
 
 export function getAuthorizedButton() {
   return request({
-    url: 'api/admin/authorizedButton',
+    url: 'api/authorized_button',
     method: 'get'
   })
 }

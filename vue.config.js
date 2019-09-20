@@ -24,10 +24,46 @@ module.exports = {
         changeOrigin: true
       }
     }
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://alpha.orientsec.com.cn:8000',
+    //     changeOrigin: true,
+    //     headers: {
+    //       'X-Forwarded-For': 'localhost:8081'
+    //     }
+    //   },
+    //   '/gateway': {
+    //     target: 'http://alpha.orientsec.com.cn:8000',
+    //     changeOrigin: true,
+    //     headers: {
+    //       'X-Forwarded-For': 'localhost:8081'
+    //     }
+    //   },
+    //   '/rw_api': {
+    //     target: 'http://alpha.orientsec.com.cn:8000',
+    //     changeOrigin: true,
+    //     headers: {
+    //       'X-Forwarded-For': 'localhost:8081'
+    //     },
+    //     pathRewrite: {
+    //       '^/rw_api': ''
+    //     }
+    //   },
+    //   '/node_api': {
+    //     target: 'http://localhost:7001',
+    //     changeOrigin: true,
+    //     headers: {
+    //       'X-Forwarded-For': 'localhost:8081'
+    //     },
+    //     pathRewrite: {
+    //       '^/node_api': ''
+    //     }
+    //   }
+    // }
   },
 
   configureWebpack: {
-    name: 'alpha-ui',
+    name: 'genesis-frontend-template',
     resolve: {
       alias: {
         '@': resolve('src')

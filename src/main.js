@@ -16,7 +16,7 @@ import {
   Scrollbar,
   Icon,
   Button,
-  Breadcrumb
+  Loading
 } from 'genesis-ui'
 
 Vue.use(Main)
@@ -29,7 +29,16 @@ Vue.use(MenuItem)
 Vue.use(Scrollbar)
 Vue.use(Icon)
 Vue.use(Button)
-Vue.use(Breadcrumb)
+
+const instance = Loading.service({
+  fullscreen: true,
+  text: '页面加载中…'
+})
+router.afterEach((to, from, after) => {
+  if (instance.visible) {
+    instance.close()
+  }
+})
 
 Vue.config.productionTip = false
 
@@ -40,6 +49,17 @@ Vue.directive('has', {
     }
   }
 })
+
+Vue.prototype.$_has = (btnArr = []) => {
+  let permission = true
+  for (let i = 0; i < btnArr.length; i++) {
+    if (!store.getters.btnsPerm.includes(btnArr[i])) {
+      permission = false
+      break
+    }
+  }
+  return permission
+}
 
 new Vue({
   router,
