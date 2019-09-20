@@ -1,6 +1,5 @@
 // 模拟获取路由的数据
-export default [
-  {
+export default [{
     component: 'views/dashboard/index',
     route: 'dashboard',
     name: '首页',
@@ -21,7 +20,7 @@ export default [
     route: 'research-portal',
     name: '投研门户',
     id: '3',
-    parent: '2'
+    parentId: '2'
   },
   {
     component: 'views/my-research/policy-mgr/index',
@@ -29,7 +28,7 @@ export default [
     route: 'policy-mgr',
     name: '策略管理',
     id: '4',
-    parent: '2'
+    parentId: '2'
   },
   {
     component: 'views/abstract/index',
@@ -45,7 +44,7 @@ export default [
     route: 'fund-evaluation',
     name: '基金评价',
     id: '6',
-    parent: '5'
+    parentId: '5'
   },
   {
     component: 'views/fund-supermarket/product-details/index',
@@ -53,6 +52,6 @@ export default [
     route: 'product-details',
     name: '产品详情',
     id: '7',
-    parent: '6'
+    parentId: '6'
   }
 ]

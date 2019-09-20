@@ -17,38 +17,9 @@ export default [
     }
   },
 
-  // user logout
+  // user menu
   {
-    url: 'api/logout',
-    type: 'get',
-    response: _ => {
-      return {
-        code: 200,
-        data: 'success'
-      }
-    }
-  },
-
-  // user menus
-  {
-    url: 'api/admin/myperm',
-    type: 'get',
-    response: _ => {
-      const resources = [{
-        name: 'perm',
-        method: 'GET',
-        pattern: '/api/adimn/perm'
-      }]
-      return {
-        code: 200,
-        data: resources
-      }
-    }
-  },
-
-  // user logout
-  {
-    url: 'api/admin/menu/authorized',
+    url: 'api/authorized_menu',
     type: 'get',
     response: _ => {
       const menus = paths
@@ -58,7 +29,7 @@ export default [
     }
   },
   {
-    url: 'api/admin/authorizedButton',
+    url: 'api/authorized_button',
     type: 'get',
     response: _ => {
       const btns = [{

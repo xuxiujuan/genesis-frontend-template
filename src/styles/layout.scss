@@ -57,13 +57,15 @@
       font-size: 14px;
       color: #444444;
       line-height: 60px;
-      cursor: pointer;
+
       .header-right__username {
         display: inline-block;
       }
+
       .header-right__logout-btn {
         display: inline-block;
         margin-left: 20px;
+        cursor: pointer;
       }
     }
   }

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { loadComp } from '@/utils'
+import {
+  loadComp
+} from '@/utils'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -14,16 +16,18 @@ export const initRoutes = [{
   redirect: '/dashboard',
   component: loadComp('layout/index'),
   children: []
-}]
-
-const constantRoutes = [{
-  path: '/404',
+}, {
+  path: '*',
   component: (resolve) => require(['./views/error-page/404.vue'], resolve)
 }]
 
+const constantRoutes = []
+
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRoutes
 })
 

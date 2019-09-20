@@ -1,5 +1,6 @@
-import { logout, getInfo } from '@/api/user'
+import { getInfo } from '@/api/user'
 import { resetRouter } from '@/router'
+import { delCookie } from '@/utils'
 
 const state = {
   username: ''
@@ -13,32 +14,28 @@ const mutations = {
 
 const actions = {
   // get user info
-  getInfo({ commit, state }) {
+  getUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo().then(response => {
-        const { data } = response.data
-        if (!data) {
-          Promise.reject('Verification failed, please Login again.')
-        }
-        const { chineseName } = data
-        commit('SET_NAME', chineseName)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+      getInfo()
+        .then(response => {
+          if (!response) {
+            Promise.reject('Verification failed, please Login again.')
+          }
+          const { chineseName } = response.data.data
+          commit('SET_NAME', chineseName)
+          resolve(response.data)
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   },
 
   // user logout
   logout({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      logout().then(() => {
-        resetRouter()
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
-    })
+    delCookie('gns_session')
+    resetRouter()
+    window.location.href = 'api/logout'
   }
 }
 

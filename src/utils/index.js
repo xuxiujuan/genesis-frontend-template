@@ -9,7 +9,7 @@ export const buildMenu = function(array, ckey) {
     return e.id
   }) : []
 
-  ckey = ckey || 'parent'
+  ckey = ckey || 'parentId'
   array.forEach(node => {
     // 一级菜单
     // node[ckey]存在时，需检测node[ckey]有效性
@@ -54,5 +54,24 @@ export const depSortBy = function depSortBy(array, children, key) {
     if (array[i][children] && Array.isArray(array[i][children])) {
       depSortBy(array[i][children], children, key)
     }
+  }
+}
+
+export const getCookie = function(name) {
+  const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+  const arr = document.cookie.match(reg)
+  if (arr) {
+    return unescape(arr[2])
+  } else {
+    return null
+  }
+}
+
+export const delCookie = function(name) {
+  const exp = new Date()
+  exp.setTime(exp.getTime() - 1)
+  const cval = getCookie(name)
+  if (cval != null) {
+    document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString()
   }
 }

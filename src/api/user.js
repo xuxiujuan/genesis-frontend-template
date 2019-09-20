@@ -6,10 +6,3 @@ export function getInfo() {
     method: 'get'
   })
 }
-
-export function logout() {
-  return request({
-    url: 'api/logout',
-    method: 'get'
-  })
-}

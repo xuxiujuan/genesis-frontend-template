@@ -6,6 +6,10 @@ const mocks = [
   ...user
 ]
 
+Mock.setup({
+  timeout: 500
+})
+
 mocks.forEach(route => {
   Mock.mock(route.url, route.type, route.response)
 })

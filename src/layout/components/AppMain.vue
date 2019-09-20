@@ -2,7 +2,7 @@
   <df-main>
     <div class="main-content">
       <transition
-        name="fade-transform"
+        name="fade"
         mode="out-in"
       >
         <keep-alive :include="cachedViews">

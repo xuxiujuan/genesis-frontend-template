@@ -1,0 +1,42 @@
+.df-comp-500 {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+
+  .df-comp-500__wraper {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 220px;
+
+    .df-comp-500__left {
+      img {
+        width: 420px;
+        height: 220px;
+      }
+    }
+
+    .df-comp-500__right {
+      width: 165px;
+      margin-left: 40px;
+
+      .title {
+        font-size: 80px;
+        color: #222;
+        font-weight: bold;
+        margin-top: 50px;
+        line-height: 100px;
+      }
+
+      .tip {
+        font-size: 18px;
+        color: #666666;
+        line-height: 20px;
+        margin: 0;
+      }
+    }
+  }
+}
