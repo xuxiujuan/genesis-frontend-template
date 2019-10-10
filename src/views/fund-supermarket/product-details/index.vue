@@ -1,3 +1,5 @@
 <template>
-  <div>产品详情</div>
+  <div style="height: 100%">
+    产品详情
+  </div>
 </template>

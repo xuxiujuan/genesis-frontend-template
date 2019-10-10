@@ -4,7 +4,8 @@ import router from './router'
 import store from './store/index.js'
 import '@/styles/index.scss'
 import '../mock/index.js'
-
+import axios from 'axios'
+import DataTable from '@/components/data-table/index.vue'
 import {
   Main,
   Header,
@@ -16,7 +17,28 @@ import {
   Scrollbar,
   Icon,
   Button,
-  Loading
+  Loading,
+  Image,
+  Collapse,
+  CollapseItem,
+  Dialog,
+  Table,
+  TableColumn,
+  Pagination,
+  Form,
+  FormItem,
+  DatePicker,
+  Select,
+  Option,
+  FunctionBar,
+  Breadcrumb,
+  BreadcrumbItem,
+  Message,
+  Tabs,
+  TabPane,
+  Input,
+  List,
+  ListItem
 } from 'genesis-ui'
 
 Vue.use(Main)
@@ -29,6 +51,33 @@ Vue.use(MenuItem)
 Vue.use(Scrollbar)
 Vue.use(Icon)
 Vue.use(Button)
+Vue.use(Image)
+Vue.use(Collapse)
+Vue.use(CollapseItem)
+Vue.use(Dialog)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Pagination)
+Vue.use(Loading.directive)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(DatePicker)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(FunctionBar)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(TabPane)
+Vue.use(Tabs)
+Vue.use(Input)
+Vue.use(List)
+Vue.use(ListItem)
+
+Vue.prototype.$loading = Loading.service
+Vue.prototype.$message = Message
+
+Vue.prototype.$axios = axios
+Vue.component('DataTable', DataTable)
 
 const instance = Loading.service({
   fullscreen: true,
