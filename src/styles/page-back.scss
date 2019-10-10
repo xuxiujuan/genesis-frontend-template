@@ -1,0 +1,23 @@
+.page-back {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  box-sizing: border-box;
+  font-size: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  .title {
+    display: inline-block;
+    color: #222;
+    font-size: 18px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+  .df-icon {
+    width: 6px;
+    height: 10px;
+    color: #222;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+}

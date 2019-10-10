@@ -75,3 +75,72 @@ export const delCookie = function(name) {
     document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString()
   }
 }
+
+export const parseTime = function(time, cFormat) {
+  if (arguments.length === 0) {
+    return null
+  }
+  if (!time) {
+    return
+  }
+  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+  let date
+  if (typeof time === 'object') {
+    date = time
+  } else if (typeof time === 'string') {
+    if (cFormat && time.length === 8) {
+      return time.substr(0, 4) + '/' + time.substr(4, 2) + '/' + time.substr(6, 2)
+    }
+  } else {
+    if (('' + time).length === 10) time = parseInt(time) * 1000
+    date = new Date(time)
+  }
+  const formatObj = {
+    y: date.getFullYear(),
+    m: date.getMonth() + 1,
+    d: date.getDate(),
+    h: date.getHours(),
+    i: date.getMinutes(),
+    s: date.getSeconds(),
+    a: date.getDay()
+  }
+  const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+    let value = formatObj[key]
+    if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1]
+    if (result.length > 0 && value < 10) {
+      value = '0' + value
+    }
+    return value || 0
+  })
+  return timeStr
+}
+
+// 保留有效数字
+export const tirmZero = function(value) {
+  if (arguments.length === 0 || !value) {
+    return null
+  }
+  const regexp = /(?:\.0*|(\.\d+?)0+)$/
+  return value.toString().replace(regexp, '$1')
+}
+
+// 数字类型转成千分位逗号分隔格式，保留两位小数
+export const numberformat = function(value, type = 'float') {
+  if (!value && value !== 0) {
+    return ''
+  }
+  if (!/^[-]?\d+(\.\d+)?$/.test(value)) {
+    return value
+  }
+  value = value + ''
+  let intPart = value.split('.')[0]
+  const floatPart = value.split('.')[1]
+  intPart = intPart.replace(/\d+?(?=(?:\d{3})+$)/g, function(s) {
+    return s + ','
+  })
+  if (type === 'int') {
+    return intPart
+  }
+  return floatPart ? (intPart + '.' + floatPart) : intPart
+}
+

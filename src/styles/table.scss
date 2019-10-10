@@ -1,0 +1,20 @@
+.data-table-view-wraper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  .page-back {
+    margin-bottom: 15px;
+  }
+  .data-table-tool-bar {
+    padding-bottom: 15px;
+  }
+
+  .data-table-action-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .data-table {
+    margin-top: 15px;
+  }
+}
