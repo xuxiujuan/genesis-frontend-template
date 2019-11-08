@@ -20,12 +20,12 @@
     </div>
     <div class="header-right">
       <div class="header-right__username">{{ username }}</div>
-      <div class="header-right__logout-btn" @click="logout">注销</div>
+      <div class="header-right__logout-btn" @click="handleLogout">注销</div>
     </div>
   </df-header>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
@@ -63,6 +63,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      'logout': 'user/logout'
+    }),
     handleClick(menuItem) {
       const route = this.$route
       const to = menuItem.redirect || '/' + menuItem.path
@@ -77,8 +80,8 @@ export default {
       const menu = this.menus.find(item => item.route === index)
       this.$store.dispatch('permission/setSideMenus', menu.children || [])
     },
-    logout() {
-      window.location.href = 'api/logout'
+    handleLogout() {
+      this.logout()
     }
   }
 }
