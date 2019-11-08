@@ -41,7 +41,19 @@ export const buildMenu = function(array, ckey) {
       })
     }
   }
+  const findRedirect = function(obj) {
+    let redirect = '/' + obj.path
+    if (obj.children && obj.children.length > 0) {
+      redirect += findRedirect(obj.children[0])
+    }
+    return redirect
+  }
   findChildren(menuData)
+  menuData.forEach(item => {
+    if (!item.redirect && item.children && item.children.length > 0) {
+      item.redirect = findRedirect(item)
+    }
+  })
   return menuData
 }
 
