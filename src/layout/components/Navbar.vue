@@ -13,7 +13,7 @@
         class="header-left__menu"
         mode="horizontal"
       >
-        <df-menu-item v-for="(item, index) in menus" :key="item.name" :index="item.route" @click="handleClick(item)">
+        <df-menu-item v-for="(item, index) in interalMenus" :key="item.name" :index="item.route" @click="handleClick(item)">
           {{ item.name || index }}
         </df-menu-item>
       </df-menu>
@@ -33,6 +33,15 @@ export default {
       'menus',
       'username'
     ]),
+    interalMenus() {
+      const temp = []
+      this.menus.forEach(item => {
+        if (!item.hidden) {
+          temp.push(item)
+        }
+      })
+      return temp
+    },
     menuIndexs() {
       return this.menus.map(item => item.path)
     },
