@@ -35,6 +35,7 @@
       />
       <df-table-column
         type="index"
+        width="55"
         :index="indexMethod"
       />
       <df-table-column
@@ -174,21 +175,9 @@ export default {
     tableRowClassName({ row, rowIndex }) {
       return this.customRowClassName && this.customRowClassName({ row, rowIndex })
     },
-    formatterDate(row, column, cellValue, index) {
-      if (!cellValue) {
-        return ''
-      }
-      const date = new Date(Number(cellValue))
-      const year = date.getFullYear()
-      let month = date.getMonth() + 1
-      let day = date.getDate()
-      month = month < 10 ? '0' + month : month
-      day = day < 10 ? '0' + day : day
-      return '' + year + '-' + month + '-' + day
-    },
     formatter(row, column, cellValue, index) {
       if (column.dataType === 'date') {
-        return this.formatterDate(row, column, cellValue, index)
+        return parseTime(cellValue, '{y}-{m}-{d}')
       } else {
         return cellValue
       }

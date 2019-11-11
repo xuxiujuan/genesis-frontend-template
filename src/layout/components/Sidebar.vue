@@ -7,23 +7,25 @@
     >
       <template v-for="(fRoute, index) in sideMenus">
         <template v-if="fRoute.children">
-          <df-submenu :key="index" :index="fRoute.name">
+          <df-submenu v-if="!fRoute.hidden" :key="index" :index="fRoute.name">
             <template slot="title">{{ fRoute.name }}</template>
             <template v-for="cRoute in fRoute.children">
-              <df-submenu v-if="cRoute.children" :key="cRoute.name" :index="cRoute.route">
+              <df-submenu v-if="!cRoute.hidden && cRoute.children" :key="cRoute.name" :index="cRoute.route">
                 <template slot="title">{{ cRoute.name }}</template>
-                <df-menu-item v-for="tRoute in cRoute.children" :key="tRoute.name" :index="tRoute.route" :route="tRoute">
-                  {{ tRoute.name }}
-                </df-menu-item>
+                <template v-for="tRoute in cRoute.children">
+                  <df-menu-item v-if="!tRoute.hidden" :key="tRoute.name" :index="tRoute.route" :route="tRoute">
+                    {{ tRoute.name }}
+                  </df-menu-item>
+                </template>
               </df-submenu>
-              <df-menu-item v-else :key="cRoute.name" :index="cRoute.route" :route="cRoute">
+              <df-menu-item v-else-if="!cRoute.hidden" :key="cRoute.name" :index="cRoute.route" :route="cRoute">
                 {{ cRoute.name }}
               </df-menu-item>
             </template>
           </df-submenu>
         </template>
         <template v-else>
-          <df-menu-item :key="fRoute.name" :index="fRoute.route" :route="fRoute">
+          <df-menu-item v-if="!fRoute.hidden" :key="fRoute.name" :index="fRoute.route" :route="fRoute">
             {{ fRoute.name }}
           </df-menu-item>
         </template>

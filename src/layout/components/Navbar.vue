@@ -13,19 +13,19 @@
         class="header-left__menu"
         mode="horizontal"
       >
-        <df-menu-item v-for="(item, index) in menus" :key="item.name" :index="item.route" @click="handleClick(item)">
+        <df-menu-item v-for="(item, index) in interalMenus" :key="item.name" :index="item.route" @click="handleClick(item)">
           {{ item.name || index }}
         </df-menu-item>
       </df-menu>
     </div>
     <div class="header-right">
       <div class="header-right__username">{{ username }}</div>
-      <div class="header-right__logout-btn" @click="logout">注销</div>
+      <div class="header-right__logout-btn" @click="handleLogout">注销</div>
     </div>
   </df-header>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
@@ -33,6 +33,15 @@ export default {
       'menus',
       'username'
     ]),
+    interalMenus() {
+      const temp = []
+      this.menus.forEach(item => {
+        if (!item.hidden) {
+          temp.push(item)
+        }
+      })
+      return temp
+    },
     menuIndexs() {
       return this.menus.map(item => item.path)
     },
@@ -54,6 +63,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      'logout': 'user/logout'
+    }),
     handleClick(menuItem) {
       const route = this.$route
       const to = menuItem.redirect || '/' + menuItem.path
@@ -68,8 +80,8 @@ export default {
       const menu = this.menus.find(item => item.route === index)
       this.$store.dispatch('permission/setSideMenus', menu.children || [])
     },
-    logout() {
-      window.location.href = 'api/logout'
+    handleLogout() {
+      this.logout()
     }
   }
 }

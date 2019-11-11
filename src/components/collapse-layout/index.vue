@@ -18,7 +18,7 @@
             }"
           >
             <div class="cus-aside-main">
-              <slot name="aside"></slot>
+              <slot name="aside" />
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="cus-main">
       <div class="cus-main__content">
-        <slot name="main"></slot>
+        <slot name="main" />
       </div>
     </div>
   </div>
