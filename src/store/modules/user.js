@@ -1,6 +1,5 @@
 import { getInfo } from '@/api/user'
 import { resetRouter } from '@/router'
-import { delCookie } from '@/utils'
 
 const state = {
   username: ''
@@ -33,9 +32,8 @@ const actions = {
 
   // user logout
   logout({ commit, state }) {
-    delCookie('gns_session')
     resetRouter()
-    window.location.href = 'api/logout'
+    window.location.href = '/gateway/logout'
   }
 }
 

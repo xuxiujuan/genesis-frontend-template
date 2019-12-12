@@ -5,7 +5,15 @@ import 'nprogress/nprogress.css'
 
 const service = axios.create({
   baseURL: '',
-  timeout: 15000
+  timeout: 15000,
+  headers: {
+    common: {
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    post: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  }
 })
 
 let start = 0
@@ -36,7 +44,9 @@ service.interceptors.response.use(
   error => {
     done = start = 0
     NProgress.done()
-    console.log('err' + error) // for debug
+    if (error.response && +error.response.status === 401) {
+      window.location.href = error.response.headers.location
+    }
     return Promise.reject(error)
   }
 )

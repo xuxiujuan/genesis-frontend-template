@@ -69,25 +69,6 @@ export const depSortBy = function depSortBy(array, children, key) {
   }
 }
 
-export const getCookie = function(name) {
-  const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
-  const arr = document.cookie.match(reg)
-  if (arr) {
-    return unescape(arr[2])
-  } else {
-    return null
-  }
-}
-
-export const delCookie = function(name) {
-  const exp = new Date()
-  exp.setTime(exp.getTime() - 1)
-  const cval = getCookie(name)
-  if (cval != null) {
-    document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString()
-  }
-}
-
 export const parseTime = function(time, cFormat) {
   if (arguments.length === 0) {
     return null

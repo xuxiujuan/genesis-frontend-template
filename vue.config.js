@@ -23,43 +23,20 @@ module.exports = {
         target: `http://127.0.0.1:8081/mock`,
         changeOrigin: true
       }
+      // '/api': {
+      //   target: 'http://genesis.orientsec.com.cn:8000',
+      //   changeOrigin: true,
+      //   headers: {
+      //     'X-Forwarded-For': 'localhost:8081'
+      //   }
+      // },
+      // '/gateway': {
+      // target: 'http://genesis.orientsec.com.cn:8000',
+      // changeOrigin: true,
+      // headers: {
+      //   'X-Forwarded-For': 'localhost:8081'
+      // }
     }
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://alpha.orientsec.com.cn:8000',
-    //     changeOrigin: true,
-    //     headers: {
-    //       'X-Forwarded-For': 'localhost:8081'
-    //     }
-    //   },
-    //   '/gateway': {
-    //     target: 'http://alpha.orientsec.com.cn:8000',
-    //     changeOrigin: true,
-    //     headers: {
-    //       'X-Forwarded-For': 'localhost:8081'
-    //     }
-    //   },
-    //   '/rw_api': {
-    //     target: 'http://alpha.orientsec.com.cn:8000',
-    //     changeOrigin: true,
-    //     headers: {
-    //       'X-Forwarded-For': 'localhost:8081'
-    //     },
-    //     pathRewrite: {
-    //       '^/rw_api': ''
-    //     }
-    //   },
-    //   '/node_api': {
-    //     target: 'http://localhost:7001',
-    //     changeOrigin: true,
-    //     headers: {
-    //       'X-Forwarded-For': 'localhost:8081'
-    //     },
-    //     pathRewrite: {
-    //       '^/node_api': ''
-    //     }
-    //   }
-    // }
   },
 
   configureWebpack: {
